@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+	<meta name="viewport" content="width=device-width, height=device-height" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<meta name="viewport" content="target-densitydpi=device-dpi" />
+<title>iRoad Community Policing</title>
+<link rel="stylesheet"
+	href="assets/scripts/materialize/materialize.min.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.css"> -->
+<link rel="stylesheet" href="assets/styles/style.css">
+
+
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript"
+	src="assets/scripts/angular/angular.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script> -->
+<script src="assets/scripts/angular/ng-cordova.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="assets/scripts/fastclick.js"></script>
+	<script type="text/javascript" src="assets/scripts/iscroll.js"></script>
+	<script type="text/javascript">
+		var myScroll;
+		function loaded() {
+			myScroll = new iScroll('nav-mobile');
+		}
+		document.addEventListener('DOMContentLoaded', loaded, false);
+	</script>
+
+<script src="assets/scripts/materialize/materialize.min.js"></script>
+
+<script type="text/javascript"
+	src="assets/scripts/angular/angular-materialize.js"></script>
+<script type="text/javascript"
+	src="assets/scripts/angular/angular-route.min.js"></script>
+
+<!-- App -->
+<script type="text/javascript" src="app/app.js"></script>
+
+</head>
+<body ng-app="app" ng-controller="BodyController">
+	<header>
+		<div class="container">
+			<a href="#" data-activates="nav-mobile"
+				class="button-collapse top-nav" data-sidenav="left"
+				data-closeonclick="false"><i class="mdi-navigation-menu"></i></a>
+		</div>
+		<ul id="nav-mobile" class="side-nav fixed">
+			<!--Maybe a logo?-->
+			<!--<li class="logo" style="margin-left: -15px;"><a id="logo-container" href="http://materializecss.com/"class="brand-logo"><h3></h3></a></li>-->
+			<li class="bold"><a href="#/" class="waves-effect waves-teal">Home</a></li>
+			<li class="bold"><a href="#/new" class="waves-effect waves-teal">Community
+					Report</a></li>
+			<li class="bold"><a href="https://angularjs.org/"
+				class="waves-effect waves-teal">Hospital Police & Fire Station</a></li>
+
+			<li class="bold"><a href="#about"
+				class="waves-effect waves-teal">About angular-materialize</a></li>
+		</ul>
+	</header>
+	<div class="section" id="index-banner">
+		<div class="container">
+			<div class="row">
+				<div class="col s12">
+					<h3 class="header center-on-small-only">iRoad Community
+						Policing</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<main ng-view class=" blue-grey darken-1"> </main>
+
+	<script type="text/javascript" src="app/services/event-service.js"></script>
+	<script type="text/javascript" src="app/services/program-service.js"></script>
+	<script type="text/javascript" src="app/services/mobile-service.js"></script>
+	<script type="text/javascript" src="app/directives/inputDataElement.js"></script>
+	<script type="text/javascript"
+		src="app/controllers/reportController.js"></script>
+</body>
+</html>

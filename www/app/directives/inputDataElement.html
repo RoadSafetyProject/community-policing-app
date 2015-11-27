@@ -1,0 +1,13 @@
+<div ng-if="elementData.name != 'Community Report Video' && elementData.name != 'Community Report Image'" class="input-field col s6"
+     ng-if="elementData.type == 'string' && !elementData.optionSet">
+    <label for="{{elementData.id}}">{{elementData.name}}</label>
+    <input required ng-model="ngDataModel.value" id="{{programStageDataElement.dataElement.id}}"
+           type="text" class="validate" />
+</div>
+<div class="input-field col s6"
+     ng-if="elementData.optionSet">
+    <select required class="" ng-model="ngModel.value" material-select watch
+            ng-options="i.name as (i.name) for i in elementData.optionSet.options">
+        <option value="">Choose</option>
+    </select>
+</div>
