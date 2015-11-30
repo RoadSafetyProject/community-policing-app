@@ -6,7 +6,7 @@ if ('addEventListener' in document) {
         FastClick.attach(document.body);
     }, false);
 }
-var app = angular.module('app', ['ui.materialize','ngRoute','ngCordova'])
+var app = angular.module('app', ['ui.materialize','ngRoute','ngCordova','uiGmapgoogle-maps'])
 .value('DHIS2URL', 'http://localhost:8080/demo')
 .config(function($routeProvider) {
 
@@ -16,6 +16,9 @@ var app = angular.module('app', ['ui.materialize','ngRoute','ngCordova'])
     }).when('/new', {
         templateUrl: 'app/views/newReport.html',
         controller: 'NewReportController'
+    }).when('/facilities', {
+        templateUrl: 'app/views/facilities.html',
+        controller: 'FacilitiesController'
     }).otherwise({
         redirectTo : '/'
     });

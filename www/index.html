@@ -13,20 +13,22 @@
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.css"> -->
 <link rel="stylesheet" href="assets/styles/style.css">
 
-
+	<script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js" type="text/javascript"></script>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript"
 	src="assets/scripts/angular/angular.min.js"></script>
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script> -->
 <script src="assets/scripts/angular/ng-cordova.min.js"></script>
+	<script src="assets/scripts/angular/angular-google-maps.min.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="assets/scripts/fastclick.js"></script>
 	<script type="text/javascript" src="assets/scripts/iscroll.js"></script>
 	<script type="text/javascript">
 		var myScroll;
 		function loaded() {
-			myScroll = new iScroll('nav-mobile');
+			myScroll = new iScroll('slide-out');
 		}
 		document.addEventListener('DOMContentLoaded', loaded, false);
 	</script>
@@ -43,23 +45,20 @@
 
 </head>
 <body ng-app="app" ng-controller="BodyController">
-	<header>
+	<!--<header>
 		<div class="container">
 			<a href="#" data-activates="nav-mobile"
 				class="button-collapse top-nav" data-sidenav="left"
 				data-closeonclick="false"><i class="mdi-navigation-menu"></i></a>
 		</div>
 		<ul id="nav-mobile" class="side-nav fixed">
-			<!--Maybe a logo?-->
-			<!--<li class="logo" style="margin-left: -15px;"><a id="logo-container" href="http://materializecss.com/"class="brand-logo"><h3></h3></a></li>-->
+			&lt;!&ndash;Maybe a logo?&ndash;&gt;
+			&lt;!&ndash;<li class="logo" style="margin-left: -15px;"><a id="logo-container" href="http://materializecss.com/"class="brand-logo"><h3></h3></a></li>&ndash;&gt;
 			<li class="bold"><a href="#/" class="waves-effect waves-teal">Home</a></li>
 			<li class="bold"><a href="#/new" class="waves-effect waves-teal">Community
 					Report</a></li>
 			<li class="bold"><a href="https://angularjs.org/"
 				class="waves-effect waves-teal">Hospital Police & Fire Station</a></li>
-
-			<li class="bold"><a href="#about"
-				class="waves-effect waves-teal">About angular-materialize</a></li>
 		</ul>
 	</header>
 	<div class="section" id="index-banner">
@@ -71,7 +70,34 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
+	<nav class="blue darken-3" style="padding-bottom: 15px;padding-left: 10px;padding-top: 5px;">
+		<a class="brand-logo center" style="font-size: 1.5em;">
+			iRoad Community
+			Policing
+		</a>
+
+		<ul class="right hide-on-med-and-down">
+			<li class="logo" style="margin-left: -15px;"><a id="logo-container" href="http://materializecss.com/"class="brand-logo"><h3></h3></a></li>&ndash;&gt;
+			<li class="bold"><a href="#/" class="waves-effect waves-teal">Home</a></li>
+			<li class="bold"><a href="#/new" class="waves-effect waves-teal">Community
+				Report</a></li>
+			<li class="bold"><a href="#/facilities"
+								class="waves-effect waves-teal">Hospital Police & Fire Station</a></li>
+		</ul>
+
+
+		<ul id="slide-out" class="side-nav" style="-webkit-overflow-scrolling: touch;">
+			<li class="logo" style="margin-left: -15px;"><a id="logo-container" href="http://materializecss.com/"class="brand-logo"><h3></h3></a></li>&ndash;&gt;
+			<li class="bold"><a href="#/" class="waves-effect waves-teal">Home</a></li>
+			<li class="bold"><a href="#/new" class="waves-effect waves-teal">Community
+				Report</a></li>
+			<li class="bold"><a href="#/facilities"
+								class="waves-effect waves-teal">Hospital Police & Fire Station</a></li>
+		</ul>
+		<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu" ></i></a>
+
+	</nav>
 
 	<main ng-view class=" blue-grey darken-1"> </main>
 
@@ -81,5 +107,14 @@
 	<script type="text/javascript" src="app/directives/inputDataElement.js"></script>
 	<script type="text/javascript"
 		src="app/controllers/reportController.js"></script>
+	<script type="text/javascript"
+			src="app/controllers/facilitiesController.js"></script>
+	<script type="text/javascript">
+		$(".button-collapse").sideNav({
+			menuWidth: 300, // Default is 240
+			edge: 'left',
+			closeOnClick: true
+		});
+	</script>
 </body>
 </html>
