@@ -4,10 +4,8 @@
 var app = angular.module('app');
 app.factory('MobileService', function($q,$cordovaCamera){
     var MobileService  = {
-        getPhoto: function(cameraSuccess) {
-            navigator.device.capture.captureVideo(cameraSuccess,  function(err) {
-                // error
-            }, {limit: 1});
+        getPhoto: function(cameraSuccess,cameraError) {
+            navigator.device.capture.captureImage(cameraSuccess,  cameraError, {limit: 1});
         }
     }
     return MobileService;

@@ -12,9 +12,11 @@ app.controller('NewReportController', function($scope,ProgramManger,MobileServic
 
 	$scope.takeAPhoto = function(){
 		MobileService.getPhoto(function(imageData) {
-			alert("Tooke a picture");
+			alert("Good:" + JSON.stringify(imageData));
 				var image = document.getElementById('myImage');
 				image.src = "data:image/jpeg;base64," + imageData;
+		},function(error){
+			alert("Error:" + JSON.stringify(imageData));
 		});
 	}
 });
