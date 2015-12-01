@@ -19,4 +19,13 @@ app.controller('NewReportController', function($scope,ProgramManger,MobileServic
 			alert("Error:" + JSON.stringify(imageData));
 		});
 	}
+	$scope.takeAVideo = function(){
+		MobileService.getVideo(function(imageData) {
+			alert("Good:" + JSON.stringify(imageData));
+			var image = document.getElementById('myImage');
+			image.src = "data:image/jpeg;base64," + imageData;
+		},function(error){
+			alert("Error:" + JSON.stringify(imageData));
+		});
+	}
 });
