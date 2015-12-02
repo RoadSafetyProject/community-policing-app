@@ -10,6 +10,9 @@ app.factory('MobileService', function($q){
         getVideo: function(cameraSuccess,cameraError) {
             navigator.device.capture.captureVideo(cameraSuccess,  cameraError, {limit: 1});
         },
+        getGeoLocation: function(onSuccess,onError) {
+            navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 10000, enableHighAccuracy: true});
+        },
         uploadFile : function(mediaFile) {
             var ft = new FileTransfer(),
                 path = mediaFile.localURL;
