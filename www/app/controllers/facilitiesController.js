@@ -28,7 +28,7 @@ app.controller('FacilitiesController', function($scope,ProgramManger,MobileServi
     },function(error){
         alert("Error");
     });
-    $http.get(DHIS2URL+'/api/organisationUnitGroups.json?paging=false&fields=:all')
+    $http.get(DHIS2URL+'/api/organisationUnitGroups.json?paging=false&fields=:all,organisationUnits[:all]')
         .success(function(data){
             data.organisationUnitGroups.forEach(function(organisationUnitGroup){
                 if(organisationUnitGroup.name != "Hospitals"){
