@@ -10,7 +10,7 @@ app.controller('NewReportController', function($scope,ProgramManger,MobileServic
     $scope.saveEvent = function(){
         $scope.loading = true;
         $scope.data.event.save().then(function(){
-            Materialize.toast('Report Sent Successfully!', 4000, 'rounded')
+            Materialize.toast('Report Sent Successfully!', 4000, 'rounded');
             $scope.loading = false;
         })
     }
@@ -20,18 +20,14 @@ app.controller('NewReportController', function($scope,ProgramManger,MobileServic
 
 	$scope.takeAPhoto = function(){
 		MobileService.getPhoto(function(imageData) {
-			alert("Good:" + JSON.stringify(imageData));
-				var image = document.getElementById('myImage');
-				image.src = "data:image/jpeg;base64," + imageData;
+			Materialize.toast('Photo Uploaded Successfully!', 4000, 'rounded');
 		},function(error){
 			alert("Error:" + JSON.stringify(imageData));
 		});
 	}
 	$scope.takeAVideo = function(){
 		MobileService.getVideo(function(imageData) {
-			alert("Good:" + JSON.stringify(imageData));
-			var image = document.getElementById('myImage');
-			image.src = "data:image/jpeg;base64," + imageData;
+			Materialize.toast('Video Uploaded Successfully!', 4000, 'rounded');
 		},function(error){
 			alert("Error:" + JSON.stringify(imageData));
 		});
