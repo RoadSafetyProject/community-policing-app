@@ -4,35 +4,35 @@
 var app = angular.module('app');
 app.factory('MobileService', function($q,$cordovaCamera){
     var MobileService  = {
-        getPhoto: function(cameraSuccess) {
-            $cordovaCamera.getPicture().then(cameraSuccess, function(err) {
-                // error
-            });
-            this.onDeviceReady().then(function(){
-                console.log(navigator);
-                /*var options = {
-                    quality: 50,
-                    destinationType: Camera.DestinationType.DATA_URL,
-                    sourceType: Camera.PictureSourceType.CAMERA,
-                    allowEdit: true,
-                    encodingType: Camera.EncodingType.JPEG,
-                    targetWidth: 100,
-                    targetHeight: 100,
-                    popoverOptions: CameraPopoverOptions,
-                    saveToPhotoAlbum: false,
-                    correctOrientation:true
-                };*/
-
-
-            })
+        getPhoto: function(cameraSuccess,cameraError) {
+            navigator.device.capture.captureImage(cameraSuccess,  cameraError, {limit: 1});
         },
-        onDeviceReady:function(callBack){
-            var defer = $q.defer();
-            document.addEventListener("deviceready", function(){
-                defer.resolve();
-            }, false);
-            return defer.promise;
+        getVideo: function(cameraSuccess,cameraError) {
+            navigator.device.capture.captureVideo(cameraSuccess,  cameraError, {limit: 1});
+        },
+        uploadFile : function(mediaFile) {
+            var ft = new FileTransfer(),
+                path = mediaFile.localURL;
+            //name = mediaFile.name;
+            var options = {};
+            options.fileKey = "upload";
+            //options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+            //options.mimeType = "text/plain";
+            var params = {};
+            params.name = "test";
+            params.external = false;
+
+            options.params = params;
+            ft.upload(path, encodeURI($rootScope.configuration.url + "/dhis-web-reporting/saveDocument.action"), function (result) {
+                    alert('results : ' + JSON.stringify(result));
+                },
+                function (error) {
+                    alert('Error uploading file ' + path + ': ' + JSON.stringify(error));
+                }, options);
+
+
         }
+
     }
     return MobileService;
 });
