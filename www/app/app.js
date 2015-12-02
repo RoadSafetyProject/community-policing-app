@@ -138,13 +138,13 @@ if ('addEventListener' in document) {
         FastClick.attach(document.body);
     }, false);
 }
-var app = angular.module('app', ['ui.materialize','ngRoute','ngCordova','uiGmapgoogle-maps'])
+var app = angular.module('app', ['ui.materialize','ngRoute','uiGmapgoogle-maps'])
     .run(function($http) {
         var username = "admin";
         var password = "IROAD2015";
         $http.defaults.headers.common.Authorization = 'Basic ' + Base64.encode(username + ':' + password);
     })
-.value('DHIS2URL', 'http://roadsafety.go.tz/demo')
+.value('DHIS2URL', 'http://localhost:8080/demo')//'http://roadsafety.go.tz/demo')
 .config(function($routeProvider) {
 
 	$routeProvider.when('/', {
