@@ -26,19 +26,22 @@ app.controller('FacilitiesController', function($scope,ProgramManger,MobileServi
     MobileService.getGeoLocation(function(position){
         $scope.currentPosition = position;
     },function(error){
-        alert("Error");
+        alert("Error Getting Current Position.");
     });
     $http.get(DHIS2URL+'/api/organisationUnitGroups.json?paging=false&fields=:all,organisationUnits[:all]')
         .success(function(data){
             data.organisationUnitGroups.forEach(function(organisationUnitGroup){
-                if(organisationUnitGroup.name != "Hospitals"){
+                if(organisationUnitGroup.name == "Hospitals"){
+                    console.log(organisationUnitGroup);
                     organisationUnitGroup.organisationUnits.forEach(function(organisationUnit){
+                        var coordinates = eval(organisationUnit.coordinates);
+                        organisationUnit.coordinates = {"latitude":coordinates[0],"longitude":coordinates[1]};
                         $scope.facilities.hospitals.push(organisationUnit);
                     });
                 }
             });
         })
         .error(function(errorMessageData){
-            alert(JSON.stringify(errorMessageData));
+            alert("Error Contacting server.");
         });
 });
