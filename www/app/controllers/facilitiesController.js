@@ -2,7 +2,7 @@
  * Created by Vincent P. Minde on 11/30/2015.
  */
 var app = angular.module('app');
-app.controller('FacilitiesController', function($scope,ProgramManger,MobileService,Event){
+app.controller('FacilitiesController', function($scope,ProgramManger,MobileService,Event,$http,DHIS2URL){
     $scope.mapObject = {};
     var baseOptions = {
         'maxZoom': 15,
@@ -17,19 +17,24 @@ app.controller('FacilitiesController', function($scope,ProgramManger,MobileServi
         }
     };
     $scope.currentPosition = {};
+    $scope.facilities = {
+        hospitals:[],
+        polices:[],
+        fire:[]
+    };
     $scope.map = {center: {latitude: -6.771430, longitude: 39.239946}, options:baseOptions, zoom:8, showTraffic: true,  show: true,mapObject:{}};
     MobileService.getGeoLocation(function(position){
-        alert(JSON.stringify(position));
         $scope.currentPosition = position;
     },function(error){
         alert("Error");
     });
-    $http.get(DHIS2URL+'/api/organisationUnitGroups.json?paging=false&' + this._fields)
+    $http.get(DHIS2URL+'/api/organisationUnitGroups.json?paging=false&fields=:all')
         .success(function(data){
-            console.log(data);
             data.organisationUnitGroups.forEach(function(organisationUnitGroup){
                 if(organisationUnitGroup.name != "Hospitals"){
-
+                    organisationUnitGroup.organisationUnits.forEach(function(organisationUnit){
+                        $scope.facilities.hospitals.push(organisationUnit);
+                    });
                 }
             });
         })

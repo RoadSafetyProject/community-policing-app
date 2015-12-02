@@ -3,5 +3,7 @@
                     zoom='map.zoom'>
         <ui-gmap-marker coords="currentPosition.coords" idkey="selectedFacility.id">
         </ui-gmap-marker>
+        <ui-gmap-marker ng-repeat="orgUnit in facilities.hospitals" coords="orgUnit.coordinates" idkey="orgUnit.id">
+        </ui-gmap-marker>
     </ui-gmap-google-map>
 </div>
