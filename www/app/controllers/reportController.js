@@ -6,6 +6,14 @@ app.controller('NewReportController', function($scope,ProgramManger,MobileServic
 	$scope.data.event = new Event(
 
 	);
+    $scope.loading = false;
+    $scope.saveEvent = function(){
+        $scope.loading = true;
+        $scope.data.event.save().then(function(){
+            Materialize.toast('Report Sent Successfully!', 4000, 'rounded')
+            $scope.loading = false;
+        })
+    }
 	ProgramManger.loadProgramByName("Community Police").then(function(communityPolicingProgram){
 		$scope.data.program = communityPolicingProgram;
 	});

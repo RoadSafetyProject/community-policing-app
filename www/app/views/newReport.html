@@ -1,5 +1,29 @@
 <div class="container">
-	<form ng-submit="data.event.save()">
+    <div ng-if="loading" class="row">
+        <div class="col s12 m12">
+            <div class="card">
+                <div class="card-content blue-text">
+                    <span class="card-title blue-text">Sending Data</span>
+                </div>
+                <div class="card-action  center">
+                    <div class="preloader-wrapper big active">
+                        <div class="spinner-layer spinner-blue-only">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                            <div class="circle"></div>
+                        </div><div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+	<form ng-if="!loading" ng-submit="saveEvent()">
 
 		<div class="row">
 			<div class="col s12 m12" style="
@@ -30,27 +54,12 @@
 
 								</element-model>
 
-								<!--<div ng-if="programStageDataElement.dataElement.name != 'Community Report Video' && programStageDataElement.dataElement.name != 'Community Report Image'" class="input-field col s6"
-									ng-if="programStageDataElement.dataElement.type == 'string' && !programStageDataElement.dataElement.optionSet">
-
-									<label for="{{programStageDataElement.dataElement.id}}">{{programStageDataElement.dataElement.name}}</label>
-									<input id="{{programStageDataElement.dataElement.id}}"
-										type="text" class="validate" ng-model="data.event.dataValues[$index]"/>
-								</div>
-								<div class="input-field col s6"
-									ng-if="programStageDataElement.dataElement.optionSet">
-									<select class="" material-select watch
-										ng-options="i.name as (i.name) for i in programStageDataElement.dataElement.optionSet.options">
-										<option value="">Choose</option>
-									</select>
-								</div>-->
-
 							</div>
 						</div>
 						<div class="row">
 							<div class="col s12 m12">
 								<button type="submit"
-									class="col s12 m12 l6 waves-effect waves-light btn-large blue">Send</button>
+									class="col s12 m12 l12 waves-effect waves-light btn-large blue">Send</button>
 							</div>
 						</div>
 					</div>
