@@ -49,6 +49,7 @@
     <gap:plugin name="cordova-plugin-whitelist" source="npm" version="~1" />
     <plugin name="cordova-plugin-whitelist" version="~1" />
     <plugin name="cordova-plugin-whitelist" spec="~1" />
+    <plugin name="plugin.google.maps.menusito" spec="1.2.5" source="pgb" />
 
     <access origin="http://*" />
     <feature name="http://api.phonegap.com/1.0/network"/>
