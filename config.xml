@@ -10,6 +10,7 @@
     <content src="index.html" />
 
     <preference name="permissions" value="none" />
+    <preference name="API_KEY_FOR_ANDROID" value="AIzaSyB48fRjAIlNcIeLrBxV-XzWl5aP5Iz-5H4" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
