@@ -8,16 +8,7 @@
         Vincent Minde
     </author>
     <content src="index.html" />
-    <platform name="android" >
-        <preference name="API_KEY_FOR_ANDROID" value="AIzaSyB48fRjAIlNcIeLrBxV-XzWl5aP5Iz-5H4" />
-    </platform>
-   <!-- <feature name="phonegap-googlemaps-plugin">
-        <param name="API_KEY_FOR_ANDROID" value="AIzaSyB48fRjAIlNcIeLrBxV-XzWl5aP5Iz-5H4" />
-        <param name="API_KEY_FOR_IOS" value="XXX" />
-        <param name="id" value="plugin.google.maps.menusito" />
-    </feature>-->
     <preference name="permissions" value="none" />
-    <!--<preference name="API_KEY_FOR_ANDROID" value="AIzaSyB48fRjAIlNcIeLrBxV-XzWl5aP5Iz-5H4" />-->
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
@@ -53,9 +44,7 @@
     <gap:plugin name="org.apache.cordova.splashscreen" source = "pgb" />
     <gap:plugin name="org.apache.cordova.vibration" source = "pgb"/>
 
-    <!--<gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" />-->
     <gap:plugin name="cordova-plugin-whitelist" source="npm" version="~1" />
-    <gap:plugin name="plugin.google.maps.menusito" source="pgb" />
     <plugin name="cordova-plugin-whitelist" version="~1" />
     <plugin name="cordova-plugin-whitelist" spec="~1" />
 
