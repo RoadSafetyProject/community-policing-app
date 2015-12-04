@@ -11,6 +11,11 @@
     <platform name="android" >
         <preference name="API_KEY_FOR_ANDROID" value="AIzaSyB48fRjAIlNcIeLrBxV-XzWl5aP5Iz-5H4" />
     </platform>
+    <feature name="phonegap-googlemaps-plugin">
+        <param name="API_KEY_FOR_ANDROID" value="AIzaSyB48fRjAIlNcIeLrBxV-XzWl5aP5Iz-5H4" />
+        <param name="API_KEY_FOR_IOS" value="XXX" />
+        <param name="id" value="plugin.google.maps.menusito" />
+    </feature>
     <preference name="permissions" value="none" />
     <!--<preference name="API_KEY_FOR_ANDROID" value="AIzaSyB48fRjAIlNcIeLrBxV-XzWl5aP5Iz-5H4" />-->
     <preference name="orientation" value="default" />
