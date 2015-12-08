@@ -2,7 +2,7 @@
  * Created by Vincent P. Minde on 11/30/2015.
  */
 var app = angular.module('app');
-app.controller('FacilitiesController', function($scope,ProgramManger,MobileService,Event,$http,DHIS2URL){
+app.controller('FacilitiesController', function($scope,ProgramManger,MobileService,Event,$http,DHIS2URL,uiGmapGoogleMapApi){
     var baseOptions = {
         'maxZoom': 15,
         'minZoom': 4,
@@ -21,13 +21,17 @@ app.controller('FacilitiesController', function($scope,ProgramManger,MobileServi
         polices:[],
         fire:[]
     };
-    $scope.map = {center: {latitude: -6.771430, longitude: 39.239946}, options:baseOptions, zoom:8, showTraffic: true,  show: true,mapObject:{}};
+    uiGmapGoogleMapApi.then(function(maps) {
+        $scope.map = {center: {latitude: -6.771430, longitude: 39.239946}, options:baseOptions, zoom:8, showTraffic: true,  show: true,mapObject:{}};
+        console.log('map: ', maps);
+    });
+
     MobileService.getGeoLocation(function(position){
         $scope.currentPosition = position;
     },function(error){
         alert("Error Getting Current Position.");
     });
-    function GoogleMap(){
+    /*function GoogleMap(){
 
         this.initialize = function(){
             var map = showMap();
@@ -55,7 +59,7 @@ app.controller('FacilitiesController', function($scope,ProgramManger,MobileServi
     });
 
     function onMapInit(map) {
-    }
+    }*/
     $http.get(DHIS2URL+'/api/organisationUnitGroups.json?paging=false&fields=:all,organisationUnits[:all]')
         .success(function(data){
             data.organisationUnitGroups.forEach(function(organisationUnitGroup){

@@ -145,8 +145,12 @@ var app = angular.module('app', ['ui.materialize','ngRoute','uiGmapgoogle-maps']
         $http.defaults.headers.common.Authorization = 'Basic ' + Base64.encode(username + ':' + password);
     })
 .value('DHIS2URL', 'http://roadsafety.go.tz/demo')//'http://roadsafety.go.tz/demo')
-.config(function($routeProvider) {
-
+.config(function($routeProvider,uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+        key: 'xxx',
+        v: '3.17',
+        libraries: 'weather,geometry,visualization'
+    });
 	$routeProvider.when('/', {
         templateUrl: 'app/views/home.html',
         controller: 'BodyController'
