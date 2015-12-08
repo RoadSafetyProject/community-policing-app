@@ -147,7 +147,7 @@ var app = angular.module('app', ['ui.materialize','ngRoute','uiGmapgoogle-maps']
 .value('DHIS2URL', 'http://roadsafety.go.tz/demo')//'http://roadsafety.go.tz/demo')
 .config(function($routeProvider,uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
-        key: 'xxx',
+        //key: 'xxx',
         v: '3.17',
         libraries: 'weather,geometry,visualization'
     });
