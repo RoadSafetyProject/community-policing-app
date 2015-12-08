@@ -190,7 +190,7 @@ var app = angular.module('app', ['ui.materialize','ngRoute','uiGmapgoogle-maps']
             toast("Changed to page " + page, 1000);
         }
     }])
-    .controller('DateController', ["$scope",'MobileService','$http','DHIS2URL','uiGmapGoogleMapApi', function ($scope,MobileService,$http,DHIS2URL,uiGmapGoogleMapApi){
+    .controller('DateController', ["$scope",'MobileService','$http','DHIS2URL', function ($scope,MobileService,$http,DHIS2URL){
         alert("Main1");
         var baseOptions = {
             'maxZoom': 15,
@@ -212,11 +212,8 @@ var app = angular.module('app', ['ui.materialize','ngRoute','uiGmapgoogle-maps']
             fire:[]
         };
         alert("Main3");
-        uiGmapGoogleMapApi.then(function(maps) {
-            alert(JSON.stringify(maps));
-            $scope.map = {center: {latitude: -6.771430, longitude: 39.239946}, options:baseOptions, zoom:8, showTraffic: true,  show: true,mapObject:{}};
-            console.log('map: ', JSON.stringify(maps));
-        });
+        $scope.map = {center: {latitude: -6.771430, longitude: 39.239946}, options:baseOptions, zoom:8, showTraffic: true,  show: true,mapObject:{}};
+
         alert("Main4");
         MobileService.getGeoLocation(function(position){
             $scope.currentPosition = position;
