@@ -1,7 +1,9 @@
 /**
  * Created by Vincent P. Minde on 11/30/2015.
  */
+    alert("Facility Controller");
 var app = angular.module('app');
+alert("Facility Controller2");
 app.controller('FacilitiesController', function($scope,MobileService,$http,DHIS2URL,uiGmapGoogleMapApi){
     alert("Main1");
     var baseOptions = {
