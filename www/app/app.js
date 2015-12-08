@@ -197,14 +197,15 @@ var app = angular.module('app', ['ui.materialize','ngRoute','uiGmapgoogle-maps']
             }
 
             var showMap = function(){
+                alert("here");
                 var mapOptions = {
                     zoom: 4,
                     center: new google.maps.LatLng(-33, 151),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 }
-
+                alert("here1");
                 var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-
+                alert("here2");
                 return map;
             }
         }
