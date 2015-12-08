@@ -22,8 +22,9 @@ app.controller('FacilitiesController', function($scope,ProgramManger,MobileServi
         fire:[]
     };
     uiGmapGoogleMapApi.then(function(maps) {
+        alert(JSON.stringify(maps));
         $scope.map = {center: {latitude: -6.771430, longitude: 39.239946}, options:baseOptions, zoom:8, showTraffic: true,  show: true,mapObject:{}};
-        console.log('map: ', maps);
+        console.log('map: ', JSON.stringify(maps));
     });
 
     MobileService.getGeoLocation(function(position){
