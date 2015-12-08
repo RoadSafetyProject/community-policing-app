@@ -2,7 +2,7 @@
  * Created by Vincent P. Minde on 11/30/2015.
  */
 var app = angular.module('app');
-app.controller('FacilitiesController', function($scope,ProgramManger,MobileService,Event,$http,DHIS2URL,uiGmapGoogleMapApi){
+app.controller('FacilitiesController', function($scope,MobileService,$http,DHIS2URL,uiGmapGoogleMapApi){
     alert("Main1");
     var baseOptions = {
         'maxZoom': 15,

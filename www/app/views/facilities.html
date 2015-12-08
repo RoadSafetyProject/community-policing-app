@@ -1,16 +1,18 @@
-<div class="angular-google-map-container">
-    <ui-gmap-google-map control='map.mapObject' center='map.center'
-                    zoom='map.zoom'>
-        <ui-gmap-marker coords="currentPosition.coords" idkey="selectedFacility.id">
-        </ui-gmap-marker>
-        <ui-gmap-marker ng-repeat="orgUnit in facilities.hospitals" coords="orgUnit.coordinates" idkey="orgUnit.id">
-        </ui-gmap-marker>
-    </ui-gmap-google-map>
+<div class="container">
+    <div class="angular-google-map-container">
+        <ui-gmap-google-map control='map.mapObject' center='map.center'
+                            zoom='map.zoom'>
+            <ui-gmap-marker coords="currentPosition.coords" idkey="selectedFacility.id">
+            </ui-gmap-marker>
+            <ui-gmap-marker ng-repeat="orgUnit in facilities.hospitals" coords="orgUnit.coordinates" idkey="orgUnit.id">
+            </ui-gmap-marker>
+        </ui-gmap-google-map>
+    </div>
+    <!--
+    <div  style="width:400px;height:400px" id="map_canvas">
+        &lt;!&ndash;<div id="searchBox">
+            <input type="text" id="query" size="30" />
+            <button id="searchBtn">Search</button>
+        </div>&ndash;&gt;
+    </div>-->
 </div>
-<!--
-<div  style="width:400px;height:400px" id="map_canvas">
-    &lt;!&ndash;<div id="searchBox">
-        <input type="text" id="query" size="30" />
-        <button id="searchBtn">Search</button>
-    </div>&ndash;&gt;
-</div>-->

@@ -145,7 +145,6 @@ var app = {
     },
 };
 document.addEventListener("deviceready", function () {
-    alert("App initialize");
     app.initialize();
 }, false);
 var app = angular.module('app', ['ui.materialize','ngRoute','uiGmapgoogle-maps'])
