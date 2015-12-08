@@ -27,21 +27,6 @@ app.controller('FacilitiesController', function($scope,ProgramManger,MobileServi
     },function(error){
         alert("Error Getting Current Position.");
     });
-    document.addEventListener("deviceready", function() {
-        alert("Here");
-        // Define a div tag with id="map_canvas"
-        var mapDiv = document.getElementById("map_canvas");
-        alert("Here1");
-        // Initialize the map plugin
-        var map = plugin.google.maps.Map.getMap(mapDiv);
-        alert("Here2");
-        // You have to wait the MAP_READY event.
-        map.on(plugin.google.maps.event.MAP_READY, onMapInit);
-        alert("Here3");
-    });
-
-    function onMapInit(map) {
-    }
     $http.get(DHIS2URL+'/api/organisationUnitGroups.json?paging=false&fields=:all,organisationUnits[:all]')
         .success(function(data){
             data.organisationUnitGroups.forEach(function(organisationUnitGroup){

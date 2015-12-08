@@ -650,3 +650,8 @@ body.parallax-demo footer {
     height: 400px;
     min-height: 400px;
 }
+html, body, #map-canvas {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
