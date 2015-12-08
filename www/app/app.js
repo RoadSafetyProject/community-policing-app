@@ -140,13 +140,11 @@ var app = {
 
     onDeviceReady: function() {
         angular.element(document).ready(function() {
-            angular.bootstrap(document);
+            angular.bootstrap(document, ['app']);
         });
     },
 };
-document.addEventListener("deviceready", function () {
-    app.initialize();
-}, false);
+app.initialize();
 var app = angular.module('app', ['ui.materialize','ngRoute','uiGmapgoogle-maps'])
     .run(function($http) {
         var username = "admin";
