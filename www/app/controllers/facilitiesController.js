@@ -3,6 +3,7 @@
  */
 var app = angular.module('app');
 app.controller('FacilitiesController', function($scope,ProgramManger,MobileService,Event,$http,DHIS2URL,uiGmapGoogleMapApi){
+    alert("Main1");
     var baseOptions = {
         'maxZoom': 15,
         'minZoom': 4,
@@ -15,18 +16,20 @@ app.controller('FacilitiesController', function($scope,ProgramManger,MobileServi
             'style': 'SMALL'
         }
     };
+    alert("Main2");
     $scope.currentPosition = {};
     $scope.facilities = {
         hospitals:[],
         polices:[],
         fire:[]
     };
+    alert("Main3");
     uiGmapGoogleMapApi.then(function(maps) {
         alert(JSON.stringify(maps));
         $scope.map = {center: {latitude: -6.771430, longitude: 39.239946}, options:baseOptions, zoom:8, showTraffic: true,  show: true,mapObject:{}};
         console.log('map: ', JSON.stringify(maps));
     });
-
+    alert("Main4");
     MobileService.getGeoLocation(function(position){
         $scope.currentPosition = position;
     },function(error){
@@ -61,6 +64,7 @@ app.controller('FacilitiesController', function($scope,ProgramManger,MobileServi
 
     function onMapInit(map) {
     }*/
+    alert("Main5");
     $http.get(DHIS2URL+'/api/organisationUnitGroups.json?paging=false&fields=:all,organisationUnits[:all]')
         .success(function(data){
             data.organisationUnitGroups.forEach(function(organisationUnitGroup){
@@ -77,4 +81,5 @@ app.controller('FacilitiesController', function($scope,ProgramManger,MobileServi
         .error(function(errorMessageData){
             alert("Error Contacting server.");
         });
+    alert("Main6");
 });
