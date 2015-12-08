@@ -130,14 +130,24 @@ var Base64 = {
         return string;
     }
 }
+var app = {
+    initialize: function() {
+        this.bindEvents();
+    },
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, true);
+    },
+
+    onDeviceReady: function() {
+        angular.element(document).ready(function() {
+            angular.bootstrap(document);
+        });
+    },
+};
 document.addEventListener("deviceready", function () {
-    console.log(navigator.camera);
+    alert("App initialize");
+    app.initialize();
 }, false);
-if ('addEventListener' in document) {
-    document.addEventListener('DOMContentLoaded', function() {
-        FastClick.attach(document.body);
-    }, false);
-}
 var app = angular.module('app', ['ui.materialize','ngRoute','uiGmapgoogle-maps'])
     .run(function($http) {
         var username = "admin";
