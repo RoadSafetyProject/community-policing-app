@@ -53,6 +53,7 @@
     <access origin="*.google.com"/>
     <access origin="*.googleapis.com"/>
     <access origin="*.gstatic.com"/>
+    <allow-navigation href="*" />
     <feature name="http://api.phonegap.com/1.0/network"/>
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
