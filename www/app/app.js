@@ -161,8 +161,10 @@ var app = angular.module('app', ['ui.materialize','ngRoute','uiGmapgoogle-maps']
         libraries: 'weather,geometry,visualization'
     });
 	$routeProvider.when('/', {
-        templateUrl: 'app/views/home.html',
-        controller: 'BodyController'
+        /*templateUrl: 'app/views/home.html',
+        controller: 'BodyController'*/
+        templateUrl: 'app/views/facilities.html',
+        controller: 'DateController'
     }).when('/new', {
         templateUrl: 'app/views/newReport.html',
         controller: 'NewReportController'
@@ -188,32 +190,84 @@ var app = angular.module('app', ['ui.materialize','ngRoute','uiGmapgoogle-maps']
             toast("Changed to page " + page, 1000);
         }
     }])
-    .controller('DateController', ["$scope", function ($scope) {
-        var currentTime = new Date();
-        $scope.currentTime = currentTime;
-        $scope.month = ['Januar', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        $scope.monthShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        $scope.weekdaysFull = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        $scope.weekdaysLetter = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-        $scope.today = 'Today';
-        $scope.clear = 'Clear';
-        $scope.close = 'Close';
-        $scope.onStart = function () {
-            console.log('onStart');
+    .controller('DateController', ["$scope",'MobileService','$http','DHIS2URL','uiGmapGoogleMapApi', function ($scope,MobileService,$http,DHIS2URL,uiGmapGoogleMapApi){
+        alert("Main1");
+        var baseOptions = {
+            'maxZoom': 15,
+            'minZoom': 4,
+            'backgroundColor': '#b0d1d4',
+            'panControl': false,
+            'zoomControl': true,
+            'draggable': true,
+            'zoomControlOptions': {
+                'position': 'RIGHT_TOP',
+                'style': 'SMALL'
+            }
         };
-        $scope.onRender = function () {
-            console.log('onRender');
+        alert("Main2");
+        $scope.currentPosition = {};
+        $scope.facilities = {
+            hospitals:[],
+            polices:[],
+            fire:[]
         };
-        $scope.onOpen = function () {
-            console.log('onOpen');
-        };
-        $scope.onClose = function () {
-            console.log('onClose');
-        };
-        $scope.onSet = function () {
-            console.log('onSet');
-        };
-        $scope.onStop = function () {
-            console.log('onStop');
-        };
+        alert("Main3");
+        uiGmapGoogleMapApi.then(function(maps) {
+            alert(JSON.stringify(maps));
+            $scope.map = {center: {latitude: -6.771430, longitude: 39.239946}, options:baseOptions, zoom:8, showTraffic: true,  show: true,mapObject:{}};
+            console.log('map: ', JSON.stringify(maps));
+        });
+        alert("Main4");
+        MobileService.getGeoLocation(function(position){
+            $scope.currentPosition = position;
+        },function(error){
+            alert("Error Getting Current Position.");
+        });
+        /*function GoogleMap(){
+
+         this.initialize = function(){
+         var map = showMap();
+         }
+
+         var showMap = function(){
+         var mapOptions = {
+         zoom: 4,
+         center: new google.maps.LatLng(-33, 151),
+         mapTypeId: google.maps.MapTypeId.ROADMAP
+         }
+
+         var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+         return map;
+         }
+         }
+         var map = new GoogleMap();
+         map.initialize();
+         document.addEventListener("deviceready", function() {
+         alert("Here");
+         var map = new GoogleMap();
+         map.initialize();
+         alert("Here3");
+         });
+
+         function onMapInit(map) {
+         }*/
+        alert("Main5");
+        $http.get(DHIS2URL+'/api/organisationUnitGroups.json?paging=false&fields=:all,organisationUnits[:all]')
+            .success(function(data){
+                data.organisationUnitGroups.forEach(function(organisationUnitGroup){
+                    if(organisationUnitGroup.name == "Hospitals"){
+                        console.log(organisationUnitGroup);
+                        organisationUnitGroup.organisationUnits.forEach(function(organisationUnit){
+                            var coordinates = eval(organisationUnit.coordinates);
+                            organisationUnit.coordinates = {"latitude":coordinates[0],"longitude":coordinates[1]};
+                            $scope.facilities.hospitals.push(organisationUnit);
+                        });
+                    }
+                });
+            })
+            .error(function(errorMessageData){
+                alert("Error Contacting server.");
+            });
+        alert("Main6");
     }]);
