@@ -44,9 +44,11 @@
     <gap:plugin name="org.apache.cordova.splashscreen" source = "pgb" />
     <gap:plugin name="org.apache.cordova.vibration" source = "pgb"/>
 
-    <gap:plugin name="cordova-plugin-whitelist" source="npm" version="~1" />
+    <plugin name="cordova-plugin-whitelist" spec="1.2.0" />
+
+    <!--<gap:plugin name="cordova-plugin-whitelist" source="npm" version="~1" />
     <plugin name="cordova-plugin-whitelist" version="~1" />
-    <plugin name="cordova-plugin-whitelist" spec="~1" />
+    <plugin name="cordova-plugin-whitelist" spec="~1" />-->
 
 
     <access origin="*" />
@@ -61,6 +63,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-intent href="*" />
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
