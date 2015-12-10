@@ -70,7 +70,18 @@ app.factory('ProgramManger', function($http,$q,Program,DHIS2URL){
         			}
         		});
 	        	return returnProgam;
-	        }
+	        },
+			getDataElementByName:function(dataElementName){
+				var returnDataElement = null;
+				angular.forEach(this._pool,function(program){
+					program.programStages[0].programStageDataElements.forEach(function(programStageDataElement){
+						if(programStageDataElement.dataElement.name == dataElementName){
+							returnDataElement = programStageDataElement.dataElement;
+						}
+					});
+				});
+				return returnDataElement;
+			}
 	}
 	return ProgramManger;
 });

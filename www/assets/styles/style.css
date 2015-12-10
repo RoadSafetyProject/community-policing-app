@@ -646,12 +646,5 @@ body.parallax-demo footer {
 #tx-live-lang-container .txlive-langselector-marker {
     border-bottom: 4px solid rgba(0, 0, 0, 0.61); }
 .angular-google-map-container {
-    margin-top: 45px;
-    height: 400px;
-    min-height: 400px;
-}
-html, body, #map-canvas {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+    height: 700px;
 }

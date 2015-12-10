@@ -2,7 +2,7 @@
  * Created by Vincent P. Minde on 11/24/2015.
  */
 var app = angular.module('app');
-app.factory('MobileService', function($q){
+app.factory('MobileService', function($q,DHIS2URL){
     var MobileService  = {
         getPhoto: function(cameraSuccess,cameraError) {
             navigator.device.capture.captureImage(cameraSuccess,  cameraError, {limit: 1});
@@ -14,26 +14,16 @@ app.factory('MobileService', function($q){
             navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 10000, enableHighAccuracy: true});
         },
         uploadFile : function(mediaFile) {
-            var ft = new FileTransfer(),
-                path = mediaFile.localURL;
-            //name = mediaFile.name;
+            var defer = $q.defer();
+            var ft = new FileTransfer(),path = mediaFile.localURL;
             var options = {};
-            options.fileKey = "upload";
-            //options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
-            //options.mimeType = "text/plain";
-            var params = {};
-            params.name = "test";
-            params.external = false;
-
-            options.params = params;
-            ft.upload(path, encodeURI($rootScope.configuration.url + "/dhis-web-reporting/saveDocument.action"), function (result) {
-                    alert('results : ' + JSON.stringify(result));
+            ft.upload(path, encodeURI(DHIS2URL + "/api/fileResources"), function(result) {
+                    defer.resolve(result);
                 },
-                function (error) {
-                    alert('Error uploading file ' + path + ': ' + JSON.stringify(error));
+                function(error) {
+                    defer.reject(error);
                 }, options);
-
-
+            return defer.promise;
         }
 
     }

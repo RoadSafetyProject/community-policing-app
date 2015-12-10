@@ -151,7 +151,8 @@ var app = angular.module('app', ['ui.materialize','ngRoute','uiGmapgoogle-maps']
         var password = "IROAD2015";
         $http.defaults.headers.common.Authorization = 'Basic ' + Base64.encode(username + ':' + password);
     })
-.value('DHIS2URL', 'http://roadsafety.go.tz/demo')//'http://roadsafety.go.tz/demo')
+//.value('DHIS2URL', 'http://roadsafety.go.tz/demo')
+.value('DHIS2URL', 'http://41.86.176.235:8080/dhis')
 .config(function($routeProvider,uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         //key: 'xxx',
@@ -159,10 +160,8 @@ var app = angular.module('app', ['ui.materialize','ngRoute','uiGmapgoogle-maps']
         libraries: 'weather,geometry,visualization'
     });
 	$routeProvider.when('/', {
-        /*templateUrl: 'app/views/home.html',
-        controller: 'BodyController'*/
-        templateUrl: 'app/views/facilities.html',
-        controller: 'DateController'
+        templateUrl: 'app/views/home.html',
+        controller: 'BodyController'
     }).when('/new', {
         templateUrl: 'app/views/newReport.html',
         controller: 'NewReportController'
