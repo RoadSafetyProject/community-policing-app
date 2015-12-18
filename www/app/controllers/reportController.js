@@ -44,6 +44,7 @@ app.controller('NewReportController', function($scope,ProgramManger,MobileServic
 		if($scope.imageData.localURL) {
 			promises.push(MobileService.uploadFile($scope.imageData).then(function(imageDataUpload){
                 var data = JSON.parse(imageDataUpload.response);
+                alert(data.response.fileResource.id)
 				$scope.data.event.setDataValue("Community Report Image",data.response.fileResource.id);
 			}));
 		}
