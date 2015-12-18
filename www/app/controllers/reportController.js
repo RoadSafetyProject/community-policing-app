@@ -43,12 +43,14 @@ app.controller('NewReportController', function($scope,ProgramManger,MobileServic
 		var promises = [];
 		if($scope.imageData.localURL) {
 			promises.push(MobileService.uploadFile($scope.imageData).then(function(imageDataUpload){
-				$scope.data.event.setDataValue("Community Report Image",imageDataUpload.response.fileResource.id);
+                var data = JSON.parse(imageDataUpload.response);
+				$scope.data.event.setDataValue("Community Report Image",data.response.fileResource.id);
 			}));
 		}
 		if($scope.videoData.localURL) {
 			promises.push(MobileService.uploadFile($scope.videoData).then(function(videoDataUpload){
-				$scope.data.event.setDataValue("Community Report Video",videoDataUpload.response.fileResource.id);
+                var data = JSON.parse(videoDataUpload.response);
+				$scope.data.event.setDataValue("Community Report Video",data.response.fileResource.id);
 			}));
 		}
 		$q.all(promises).then(function(){
