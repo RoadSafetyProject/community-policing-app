@@ -1,7 +1,9 @@
  <div class="angular-google-map-container">
         <ui-gmap-google-map control='map.mapObject' center='map.center'
                             zoom='map.zoom'>
-            <ui-gmap-marker coords="currentPosition.coords" idkey="key123">
+         <ui-gmap-marker ng-repeat="orgUnit in currentPosition.arr" coords="orgUnit.coords" idkey="orgUnit.timestamp">
+         </ui-gmap-marker>
+            <ui-gmap-marker coords="currentPosition.coords" idkey="currentPosition.timestamp">
             </ui-gmap-marker>
             <ui-gmap-marker ng-repeat="orgUnit in facilities.hospitals" coords="orgUnit.coordinates" idkey="orgUnit.id">
             </ui-gmap-marker>
