@@ -26,7 +26,7 @@ app.controller('FacilitiesController', function($scope,MobileService,$http,DHIS2
         console.log('map: ', JSON.stringify(maps));
     });
     MobileService.getGeoLocation(function(position){
-        alert(JSON.stringify(position));
+        //alert(JSON.stringify(position));
         $scope.currentPosition = position;
     },function(error){
         Materialize.toast('Error Getting Current Position. Please Ensure GPS is enabled', 4000);
