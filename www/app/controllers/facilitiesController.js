@@ -24,6 +24,7 @@ app.controller('FacilitiesController', function($scope,MobileService,$http,DHIS2
     uiGmapGoogleMapApi.then(function(maps) {
         $scope.map = {center: {latitude: -6.771430, longitude: 39.239946}, options:baseOptions, zoom:8, showTraffic: true,  show: true,mapObject:{}};
     });
+    $scope.loading = true;
     $http.get(DHIS2URL+'/api/organisationUnitGroups.json?paging=false&fields=:all,organisationUnits[:all]')
         .success(function(data){
             data.organisationUnitGroups.forEach(function(organisationUnitGroup){
@@ -45,9 +46,10 @@ app.controller('FacilitiesController', function($scope,MobileService,$http,DHIS2
                     });
                 }
             });
-	
+            $scope.loading = false;
         })
         .error(function(errorMessageData){
+            $scope.loading = false;
             Materialize.toast('Error Contacting server. Ensure network is available.', 4000);
         });
     $scope.currentPosition = {

@@ -1,29 +1,66 @@
- <div class="angular-google-map-container">
-        <ui-gmap-google-map control='map.mapObject' center='map.center'
-                            zoom='map.zoom'>
-         <ui-gmap-marker ng-repeat="orgUnit in currentPosition.arr" coords="orgUnit.coords" idkey="orgUnit.timestamp" click="orgUnit.onClick()">
-             <ui-gmap-window options="orgUnit.windowOptions" closeClick="orgUnit.closeClick()">
-                 <div>You are here
-                 </div>
+<div class="angular-google-map-container">
+    <ui-gmap-google-map control='map.mapObject' center='map.center'
+                        zoom='map.zoom'>
+        <ui-gmap-marker ng-repeat="orgUnit in currentPosition.arr" coords="orgUnit.coords" idkey="orgUnit.timestamp"
+                        click="orgUnit.onClick()">
+            <ui-gmap-window options="orgUnit.windowOptions" closeClick="orgUnit.closeClick()">
+                <div>You are here
+                </div>
 
-             </ui-gmap-window>
-         </ui-gmap-marker>
-            <ui-gmap-marker options="{
+            </ui-gmap-window>
+        </ui-gmap-marker>
+        <ui-gmap-marker options="{
     icon:'http://maps.google.com/mapfiles/ms/icons/hospitals.png'
 }"
-ng-repeat="orgUnit in facilities.hospitals" coords="orgUnit.coordinates" idkey="orgUnit.id" click="orgUnit.onClick()">
+                        ng-repeat="orgUnit in facilities.hospitals" coords="orgUnit.coordinates" idkey="orgUnit.id"
+                        click="orgUnit.onClick()">
 
-				<ui-gmap-window options="orgUnit.windowOptions" closeClick="orgUnit.closeClick()">
-	                <div><h5>{{orgUnit.name}}</h5>
-	                <table>
-	                <tr><td><b>Contact Person</b></td><td>{{orgUnit.contactPerson}}</td></tr>
-	                <tr><td><b>Phone Number</b></td><td>{{orgUnit.phoneNumber}}</td></tr>
-	                <tr><td><b>Email</b></td><td>{{orgUnit.email}}</td></tr>
-	                <tr><td><b>Address</b></td><td>{{orgUnit.address}}</td></tr>
-	                </table>
-	                </div>
-	                
-	            </ui-gmap-window>
-            </ui-gmap-marker>
-        </ui-gmap-google-map>
+            <ui-gmap-window options="orgUnit.windowOptions" closeClick="orgUnit.closeClick()">
+                <div><h5>{{orgUnit.name}}</h5>
+                    <table>
+                        <tr>
+                            <td><b>Contact Person</b></td>
+                            <td>{{orgUnit.contactPerson}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Phone Number</b></td>
+                            <td>{{orgUnit.phoneNumber}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Email</b></td>
+                            <td>{{orgUnit.email}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Address</b></td>
+                            <td>{{orgUnit.address}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </ui-gmap-window>
+        </ui-gmap-marker>
+    </ui-gmap-google-map>
+</div>
+<div class="loading">
+    <div ng-if="loading" class="row">
+        <div class="col s12 m12">
+            <div class="card">
+                <div class="card-action  center">
+                    <div class="preloader-wrapper big active">
+                        <div class="spinner-layer spinner-blue-only">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
