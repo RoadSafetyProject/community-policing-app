@@ -46,7 +46,7 @@
 
     <plugin name="cordova-plugin-whitelist" spec="1.2.0" />
 
-
+    <icon src="assets/img/ic_launcher.png" width="100" height="100" />
     <access origin="*" />
     <access origin="*.google.com"/>
     <access origin="*.googleapis.com"/>
