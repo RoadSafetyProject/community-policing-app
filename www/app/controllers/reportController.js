@@ -6,7 +6,7 @@ app.controller('NewReportController', function($scope,ProgramManger,MobileServic
 	$scope.data.event = new Event(
 
 	);
-    $scope.loading = false;
+    $scope.loading = true;
     $scope.saveEvent = function(){
         $scope.loading = true;
 		$scope.uploadFiles().then(function(){
@@ -15,10 +15,13 @@ app.controller('NewReportController', function($scope,ProgramManger,MobileServic
 				$scope.loading = false;
 			});
 		});
-
     }
 	ProgramManger.loadProgramByName("Community Police").then(function(communityPolicingProgram){
 		$scope.data.program = communityPolicingProgram;
+		$scope.loading = false;
+	},function(error){
+		$scope.loading = false;
+		Materialize.toast('There is a network Error!', 4000, 'rounded');
 	});
 	$scope.imageData = {};
 	$scope.takeAPhoto = function(){
