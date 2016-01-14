@@ -1,7 +1,12 @@
  <div class="angular-google-map-container">
         <ui-gmap-google-map control='map.mapObject' center='map.center'
                             zoom='map.zoom'>
-         <ui-gmap-marker ng-repeat="orgUnit in currentPosition.arr" coords="orgUnit.coords" idkey="orgUnit.timestamp">
+         <ui-gmap-marker ng-repeat="orgUnit in currentPosition.arr" coords="orgUnit.coords" idkey="orgUnit.timestamp" click="orgUnit.onClick()">
+             <ui-gmap-window options="orgUnit.windowOptions" closeClick="orgUnit.closeClick()">
+                 <div>You are here
+                 </div>
+
+             </ui-gmap-window>
          </ui-gmap-marker>
             <ui-gmap-marker options="{
     icon:'http://maps.google.com/mapfiles/ms/icons/hospitals.png'

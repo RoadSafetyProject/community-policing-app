@@ -24,17 +24,6 @@ app.controller('FacilitiesController', function($scope,MobileService,$http,DHIS2
     uiGmapGoogleMapApi.then(function(maps) {
         $scope.map = {center: {latitude: -6.771430, longitude: 39.239946}, options:baseOptions, zoom:8, showTraffic: true,  show: true,mapObject:{}};
     });
-    $scope.windowOptions = {
-            visible: false
-        };
-
-        $scope.onClick = function() {
-            $scope.windowOptions.visible = !$scope.windowOptions.visible;
-        };
-
-        $scope.closeClick = function() {
-            $scope.windowOptions.visible = false;
-        };
     $http.get(DHIS2URL+'/api/organisationUnitGroups.json?paging=false&fields=:all,organisationUnits[:all]')
         .success(function(data){
             data.organisationUnitGroups.forEach(function(organisationUnitGroup){
@@ -46,14 +35,12 @@ app.controller('FacilitiesController', function($scope,MobileService,$http,DHIS2
                         organisationUnit.windowOptions = {
                                 visible: false
                             }
-                        console.log(JSON.stringify(organisationUnit));
                         organisationUnit.onClick = function() {
                         	organisationUnit.windowOptions.visible = !organisationUnit.windowOptions.visible;
                         };
                         organisationUnit.closeClick = function() {
                         	organisationUnit.windowOptions.visible = false;
                         };
-console.log(JSON.stringify(organisationUnit));
                         $scope.facilities.hospitals.push(organisationUnit);
                     });
                 }
@@ -68,6 +55,15 @@ console.log(JSON.stringify(organisationUnit));
     };
     MobileService.getGeoLocation(function(position){
         //alert(JSON.stringify(position));
+        position.windowOptions = {
+            visible: false
+        }
+        position.onClick = function() {
+            position.windowOptions.visible = !position.windowOptions.visible;
+        };
+        position.closeClick = function() {
+            position.windowOptions.visible = false;
+        };
         $scope.currentPosition.arr.push(position);//position;
     },function(error){
         Materialize.toast('Error Getting Current Position. Please Ensure GPS is enabled', 4000);
