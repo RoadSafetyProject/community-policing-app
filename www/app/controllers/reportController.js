@@ -26,8 +26,8 @@ app.controller('NewReportController', function($scope,ProgramManger,MobileServic
 	$scope.imageData = {};
 	$scope.showPhotoOptions = false;
 	$scope.loadImage = function(){
-		//$scope.showPhotoOptions = true;
-		$('#showPhotoOptions').openModal();
+		$scope.showPhotoOptions = true;
+		//$('#showPhotoOptions').openModal();
 	}
 	$scope.takeAPhoto = function(){
 		$scope.showPhotoOptions = false;
