@@ -28,8 +28,8 @@
 		<div class="row">
 			<div class="col s12 m12" style="margin-top: 20px;">
 				<div class="col s6 m6 center-align">
-					<a class="btn-floating btn-large waves-effect waves-light blue"><i
-						class="mdi-image-photo-camera" ng-click="takeAPhoto()"></i></a>
+					<a class="btn-floating btn-large waves-effect waves-light blue modal-trigger"  href="#modal1"><i
+						class="mdi-image-photo-camera" ng-click="loadImage()"></i></a>
 				</div>
 				<div class="col s6 m6 center-align">
 					<a class="btn-floating btn-large waves-effect waves-light blue" ng-click="takeAVideo()"><i
@@ -65,4 +65,25 @@
 			</div>
 		</div>
 	</form>
+</div>
+<div class="showPhotoOptions" ng-if="showPhotoOptions">
+	<div class="content">
+	<div class="row">
+		<div class="col s6 m6" ng-click="takeAPhoto()">
+			Photo
+		</div>
+		<div class="col s6 m6" ng-click="getAPhoto()">
+			Gallery
+		</div>
+	</div>
+	</div>
+</div>
+<div id="showPhotoOptions" class="modal">
+	<div class="modal-content">
+		<h4>Modal Header</h4>
+		<p>A bunch of text</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+	</div>
 </div>

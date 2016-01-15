@@ -4,8 +4,13 @@
 var app = angular.module('app');
 app.factory('MobileService', function($q,DHIS2URL){
     var MobileService  = {
-        getPhoto: function(cameraSuccess,cameraError) {
+        takePhoto: function(cameraSuccess,cameraError) {
             navigator.device.capture.captureImage(cameraSuccess,  cameraError, {limit: 1});
+        },
+        getPhoto: function(cameraSuccess,cameraError) {
+            navigator.camera.getPicture(cameraSuccess,cameraError, { quality: 50,
+                destinationType: Camera.DestinationType.FILE_URI,
+                sourceType: Camera.PictureSourceType.PHOTOLIBRARY });
         },
         getVideo: function(cameraSuccess,cameraError) {
             navigator.device.capture.captureVideo(cameraSuccess,  cameraError, {limit: 1});

@@ -24,8 +24,23 @@ app.controller('NewReportController', function($scope,ProgramManger,MobileServic
 		Materialize.toast('There is a network Error!', 4000, 'rounded');
 	});
 	$scope.imageData = {};
+	$scope.showPhotoOptions = false;
+	$scope.loadImage = function(){
+		//$scope.showPhotoOptions = true;
+		$('#showPhotoOptions').openModal();
+	}
 	$scope.takeAPhoto = function(){
+		$scope.showPhotoOptions = false;
+		MobileService.takePhoto(function(imageData) {
+			$scope.imageData = imageData;
+			Materialize.toast('Photo Taken Successfully!', 4000);
+		},function(){
+			Materialize.toast('Error while taking photo! Please Try again', 4000);
+		});
+	}
+	$scope.getAPhoto = function(){
 		MobileService.getPhoto(function(imageData) {
+			alert(JSON.stringify(imageData));
 			$scope.imageData = imageData;
 			Materialize.toast('Photo Taken Successfully!', 4000);
 		},function(){
