@@ -12,6 +12,9 @@ app.factory('MobileService', function($q,DHIS2URL){
                 destinationType: Camera.DestinationType.FILE_URI,
                 sourceType: Camera.PictureSourceType.PHOTOLIBRARY });
         },
+        takeVideo: function(cameraSuccess,cameraError) {
+            navigator.device.capture.captureVideo(cameraSuccess,  cameraError, {limit: 1});
+        },
         getVideo: function(cameraSuccess,cameraError) {
             navigator.device.capture.captureVideo(cameraSuccess,  cameraError, {limit: 1});
         },
@@ -20,7 +23,7 @@ app.factory('MobileService', function($q,DHIS2URL){
         },
         uploadFile : function(mediaFile) {
             var defer = $q.defer();
-            var ft = new FileTransfer(),path = mediaFile.localURL;
+            var ft = new FileTransfer(),path = mediaFile;
             var options = {};
             ft.upload(path, encodeURI(DHIS2URL + "/api/fileResources"), function(result) {
                     defer.resolve(result);

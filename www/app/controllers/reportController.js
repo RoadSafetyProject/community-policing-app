@@ -49,6 +49,14 @@ app.controller('NewReportController', function($scope,ProgramManger,MobileServic
 	}
 	$scope.videoData = {};
 	$scope.takeAVideo = function(){
+		MobileService.takeVideo(function(videoData) {
+			$scope.videoData = videoData;
+			Materialize.toast('Video Taken Successfully!', 4000);
+		},function(){
+			Materialize.toast('Error while taking video! Please Try again', 4000);
+		});
+	}
+	$scope.getAVideo = function(){
 		MobileService.getVideo(function(videoData) {
 			$scope.videoData = videoData;
 			Materialize.toast('Video Taken Successfully!', 4000);
@@ -60,15 +68,24 @@ app.controller('NewReportController', function($scope,ProgramManger,MobileServic
 		var defer = $q.defer();
 		var promises = [];
 		if($scope.imageData.localURL) {
-			promises.push(MobileService.uploadFile($scope.imageData).then(function(imageDataUpload){
+			promises.push(MobileService.uploadFile($scope.imageData.localURL).then(function(imageDataUpload){
                 var data = JSON.parse(imageDataUpload.response);
-                alert(data.response.fileResource.id)
+				$scope.data.event.setDataValue("Community Report Image",data.response.fileResource.id);
+			}));
+		}else{
+			promises.push(MobileService.uploadFile($scope.imageData).then(function(imageDataUpload){
+				var data = JSON.parse(imageDataUpload.response);
 				$scope.data.event.setDataValue("Community Report Image",data.response.fileResource.id);
 			}));
 		}
 		if($scope.videoData.localURL) {
-			promises.push(MobileService.uploadFile($scope.videoData).then(function(videoDataUpload){
+			promises.push(MobileService.uploadFile($scope.videoData.localURL).then(function(videoDataUpload){
                 var data = JSON.parse(videoDataUpload.response);
+				$scope.data.event.setDataValue("Community Report Video",data.response.fileResource.id);
+			}));
+		}else{
+			promises.push(MobileService.uploadFile($scope.videoData).then(function(videoDataUpload){
+				var data = JSON.parse(videoDataUpload.response);
 				$scope.data.event.setDataValue("Community Report Video",data.response.fileResource.id);
 			}));
 		}

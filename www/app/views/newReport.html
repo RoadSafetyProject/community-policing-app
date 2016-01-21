@@ -66,24 +66,27 @@
 		</div>
 	</form>
 </div>
-<div class="showPhotoOptions" ng-if="showPhotoOptions">
+<div class="showOptions" ng-if="showPhotoOptions">
 	<div class="content">
 	<div class="row">
 		<div class="col s6 m6" ng-click="takeAPhoto()">
-			Photo
+			<img src="assets/img/camera.jpg"/>
 		</div>
 		<div class="col s6 m6" ng-click="getAPhoto()">
-			Gallery
+			<img src="assets/img/gallery.png"/>
 		</div>
 	</div>
 	</div>
 </div>
-<div id="showPhotoOptions" class="modal">
-	<div class="modal-content">
-		<h4>Modal Header</h4>
-		<p>A bunch of text</p>
-	</div>
-	<div class="modal-footer">
-		<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+<div class="showOptions" ng-if="showVideoOptions">
+	<div class="content">
+		<div class="row">
+			<div class="col s6 m6" ng-click="takeAPhoto()">
+				<img src="assets/img/video.jpg"/>
+			</div>
+			<div class="col s6 m6" ng-click="getAPhoto()">
+				<img src="assets/img/gallery.png"/>
+			</div>
+		</div>
 	</div>
 </div>
